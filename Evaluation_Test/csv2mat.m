@@ -2,7 +2,7 @@ function [] = csv2mat(csv_name,path_of_file,path_to_save)
 
 % Csv data folder directory
 
-csv_dir = strcat(path_of_file,csv_name)
+csv_dir = strcat(path_of_file,csv_name);
 openFile = fopen([csv_dir],'r');
 
 DataStartLine = 8;
@@ -30,8 +30,6 @@ R = [0 0 1;
 body_index(1,:)=find(body_names==lines(4).string);
 field = body_names(1);
 value(:,1:2) = readmatrix([csv_dir],'Range',[DataStartLine, 1, TotalFrames+DataStartLine-1, 2]);
-body_index(1,end)-1
-TotalFrames
 value(:,3:8) = readmatrix([csv_dir],...
         'Range',[DataStartLine, body_index(1,1), TotalFrames+DataStartLine-1, body_index(1,end)-1]);
 value(:,6:8) = (R*value(:,6:8)')';
@@ -44,7 +42,9 @@ path_to_save = strcat(path_to_save,csv_name);
 
 save([path_to_save,'.mat'],'data')
 
+fclose(openFile);
 clear all;
+
 
 end
 

@@ -1,7 +1,7 @@
 clear all
 current_directory = pwd;
 current_directory = strcat(current_directory,'/');
-files_ = dir(fullfile(current_directory,'*.mat'))
+files_ = dir(fullfile(current_directory,'*.mat'));
 files_number = length(files_);
 
 for i = 1:files_number
@@ -29,7 +29,8 @@ for i = 1:files_number
     
 end
 
-D_rms = rms(D_err)
+D_rms = rms(D_err);
+fprintf("RMSE Result: %f mm \n",D_rms)
 
 figure(1)
 box_chart = boxchart([X_err',Y_err',Z_err']);
